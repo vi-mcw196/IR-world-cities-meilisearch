@@ -1,0 +1,51 @@
+.app-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .search-panel {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .filters-panel {
+    width: 250px;
+  }
+  
+  .results-panel {
+    flex-grow: 1;
+  }
+  
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .hit-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    background-color: #fafafa;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+  }
+  
+  .hit-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .city-name {
+    margin: 0 0 0.5rem;
+  }
+  

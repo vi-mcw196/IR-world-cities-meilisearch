@@ -1,0 +1,14 @@
+{
+  "searchableAttributes": ["name", "asciiname", "alternatenames", "country"],
+  "displayedAttributes": ["geonameid", "name", "country", "population", "_geo", "timezone"],
+  "sortableAttributes": ["population", "timezone", "country"],
+  "filterableAttributes": ["country", "timezone"],
+  "rankingRules": [
+    "exactness",
+    "attribute",
+    "words",
+    "typo",
+    "proximity",
+    "sort"
+  ]
+}
