@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   meilisearch:
     image: getmeili/meilisearch:v1.13
@@ -11,7 +9,7 @@ services:
       - meili_data:/meili_data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7700/health"]
-      interval: 10s
+      interval: 60s
       timeout: 5s
       retries: 3
 
@@ -58,5 +56,20 @@ services:
       meilisearch:
         condition: service_healthy
 
+  stats-monitor:
+    build:
+      context: ./stats-monitor
+      dockerfile: Dockerfile
+    volumes:
+      - ./dataset:/app/dataset
+      - ./stats-monitor/output:/app/output
+    env_file:
+      - .env
+    depends_on:
+      meilisearch:
+        condition: service_healthy
+      indexer:
+        condition: service_completed_successfully
+    command: sh -c "sleep 15 && python stats_monitor.py"
 volumes:
   meili_data:
