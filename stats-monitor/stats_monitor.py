@@ -39,21 +39,15 @@ def index_batch(data, fraction):
     start_time = time.time()
     task = client.index(INDEX_NAME).add_documents(batch)
     try:
-        # Increase timeout to 60 seconds (60000ms) for larger batches
         client.wait_for_task(task.task_uid, timeout_in_ms=60000, interval_in_ms=1000)
     except MeilisearchTimeoutError:
         print(f"Warning: Indexing task timed out but may still be processing in the background.")
-        # Give some extra time for the index to settle
         time.sleep(10)
     
     indexing_time = time.time() - start_time
     
     stats = client.index(INDEX_NAME).get_stats()
-    
-    # Based on the debug output, we now know the correct attribute structure
     doc_count = stats.number_of_documents
-    
-    # The stats object shows raw_document_db_size is the attribute we need
     index_size = stats.raw_document_db_size / 1024 / 1024  # Convert to MB
     
     return {
